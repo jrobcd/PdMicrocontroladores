@@ -41,6 +41,7 @@
 static void SystemClock_Config(void);
 static void Error_Handler(void);
 
+//Funcion para inicializar delay
 void delayInit(delay_t *delay, tick_t duration) {
     delay->startTime = 0;
     delay->duration = duration;
@@ -55,6 +56,7 @@ void delayInit(delay_t *delay, tick_t duration) {
   * @retval None
   */
 
+//Funcion oara leer el estado del delay
 bool_t delayRead(delay_t *delay) {
     if (!delay->running) {
         delay->startTime = HAL_GetTick();
@@ -68,6 +70,8 @@ bool_t delayRead(delay_t *delay) {
     return false;
 }
 
+
+//Funcion para modificar la duracion al delay
 void delayWrite(delay_t *delay, tick_t duration) {
     delay->duration = duration;
 }

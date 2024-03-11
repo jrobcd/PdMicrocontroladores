@@ -22,25 +22,25 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
-#include <stdio.h>
-#include "stm32f4xx_hal.h"  		/* <- HAL include */
-#include "stm32f4xx_nucleo_144.h" 	/* <- BSP include */
+#include <stdio.h> //Biblioteca estándar de entrada/salida
+#include "stm32f4xx_hal.h"  		// Hardware Abstraction Layer (HAL) for STM32F4xx
+#include "stm32f4xx_nucleo_144.h" // Board Support Package (BSP) for Nucleo-144
 
-#include <stdint.h>
-#include <stdbool.h>
+#include <stdint.h> // Tipos enteros estándar
+#include <stdbool.h> // Tipos booleanos estándar
 
-typedef uint32_t tick_t;
-typedef bool bool_t;
+typedef uint32_t tick_t; // Definir un tipo entero
+typedef bool bool_t; //Definir un tipo booleano
 
 typedef struct{
-   tick_t startTime;
-   tick_t duration;
-   bool_t running;
+   tick_t startTime; //Tiempo inicial del delay
+   tick_t duration; //Duracion del delay
+   bool_t running; //Delay esta corriendo o no
 } delay_t;
 
-void delayInit( delay_t * delay, tick_t duration );
-bool_t delayRead( delay_t * delay );
-void delayWrite( delay_t * delay, tick_t duration );
+void delayInit( delay_t * delay, tick_t duration ); //Funcion para inicializar el delay
+bool_t delayRead( delay_t * delay ); //Funcion para leer el estado del delay
+void delayWrite( delay_t * delay, tick_t duration ); //Funcion para escribir la duracion del delay
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
