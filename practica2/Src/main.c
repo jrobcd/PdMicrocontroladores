@@ -22,12 +22,14 @@
 #include "main.h"
 
 /** @addtogroup STM32F4xx_HAL_Examples
-  * @{
+  * @{abe
   */
 
 /** @addtogroup UART_Printf
   * @{
   */
+
+#define defaultDelay 100
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -35,14 +37,20 @@
 /* Private variables ---------------------------------------------------------*/
 /* UART handler declaration */
 //UART_HandleTypeDef UartHandle;
+delay_t delay_a;
 
+UART_HandlerTypeDef UartHAndle;
 /* Private function prototypes -----------------------------------------------*/
 
 static void SystemClock_Config(void);
 static void Error_Handler(void);
 
+void delayInit( delay_t * delay, tick_t duration ); //Funcion para inicializar el delay
+bool_t delayRead( delay_t * delay ); //Funcion para leer el estado del delay
+void delayWrite( delay_t * delay, tick_t duration ); //Funcion para escribir la duracion del delay
+
 //Funcion para inicializar delay
-void delayInit(delay_t *delay, tick_t duration) {
+void delayInit(delay_t * delay, tick_t duration) {
     delay->startTime = 0;
     delay->duration = duration;
     delay->running = false;
