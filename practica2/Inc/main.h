@@ -38,10 +38,6 @@ typedef struct{
    bool_t running; //Delay esta corriendo o no
 } delay_t;
 
-void delayInit( delay_t * delay, tick_t duration ); //Funcion para inicializar el delay
-bool_t delayRead( delay_t * delay ); //Funcion para leer el estado del delay
-void delayWrite( delay_t * delay, tick_t duration ); //Funcion para escribir la duracion del delay
-
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* User can use this section to tailor USARTx/UARTx instance used and associated
