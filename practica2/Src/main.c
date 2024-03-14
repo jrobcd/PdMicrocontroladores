@@ -39,7 +39,7 @@
 //UART_HandleTypeDef UartHandle;
 delay_t delay_a;
 
-UART_HandlerTypeDef UartHAndle;
+UART_HandleTypeDef UartHandle;
 /* Private function prototypes -----------------------------------------------*/
 
 static void SystemClock_Config(void);
