@@ -19,7 +19,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "stm32f4xx_hal_uart.h"
+#include "API_delay.h"
 /** @addtogroup STM32F4xx_HAL_Examples
   * @{
   */
@@ -48,7 +49,7 @@
   * @param huart: UART handle pointer
   * @retval None
   */
-void HAL_UART_MspInit(UART_HandleTypeDef *huart)
+void HAL_UART_MspInit(UART_HandleTypeDef *uart)
 {
   GPIO_InitTypeDef  GPIO_InitStruct;
 
