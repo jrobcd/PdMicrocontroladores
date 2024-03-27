@@ -73,3 +73,65 @@ The flow of the code is as follows:
 After implementing the code, it needs to be built and uploaded to the development board. This process activates the LEDS, causing it to blink in the specified pattern.
 
 Feel free to explore each task directory for further details and specific implementations.
+
+## "practica4.1"
+
+### File Structure
+
+The project consists of four main files:
+ 
+- Inc/main.h: Includes <API_delay.h>
+
+- Src/main.c: The actual implementation of the delay structure and functions is provided here.
+
+- Drivers/API/INC/API_delay.h: Declarations and prototypes for a delay structure and its associated functions are added in this file.
+
+- Drivers/API/SRC/API_delay.c: Where functions and flow of the functionality is.
+
+- Drivers/API/INC/API_debounce.h: Declarations and prototypes for a debounce structure and its associated functions are added in this file.
+
+- Drivers/API/SRC/API_debounce.c: Where functions and flow of the functionality is.
+
+### Main Function
+
+The flow of the code is as follows:
+
+1. Initialize the debounce state:
+
+    Call the debounceFSM_init() function to set the initial state to BUTTON_UP.
+
+2. Read the button input:
+
+    Use the HAL library function HAL_GPIO_ReadPin() to read the state of the button.
+
+3. Check the time difference:
+
+    Calculate the time difference between the current time and the last debounce time.
+
+4. Update the debounce state:
+
+    Use a switch statement to handle the different debounce states.
+
+    For each state, check the button input and time difference to determine the next state.
+
+5. Handle button press and release events:
+
+    If the button is pressed (BUTTON_DOWN state), call the buttonPressed() function to turn on the LED.
+
+    If the button is released (BUTTON_UP state), call the buttonReleased() function to turn off the LED.
+
+6. Update the last debounce time:
+
+    Update the lastDebounceTime variable with the current time.
+
+7. Call the debounceFSM_update() function periodically:
+
+    Call the debounceFSM_update() function in your main loop or using a timer interrupt to continuously update the debounce state.
+
+### Building and Execution
+
+After implementing the code, it needs to be built and uploaded to the development board.
+
+Feel free to explore each task directory for further details and specific implementations.
+
+## "practica4.2"
