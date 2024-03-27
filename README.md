@@ -135,3 +135,50 @@ After implementing the code, it needs to be built and uploaded to the developmen
 Feel free to explore each task directory for further details and specific implementations.
 
 ## "practica4.2"
+
+### File Structure
+
+The project consists of four main files:
+ 
+- Inc/main.h: Includes <API_delay.h>
+
+- Src/main.c: The actual implementation of the delay structure and functions is provided here.
+
+- Drivers/API/INC/API_delay.h: Declarations and prototypes for a delay structure and its associated functions are added in this file.
+
+- Drivers/API/SRC/API_delay.c: Where functions and flow of the functionality is.
+
+- Drivers/API/INC/API_debounce.h: Declarations and prototypes for a debounce structure and its associated functions are added in this file.
+
+- Drivers/API/SRC/API_debounce.c: Where functions and flow of the functionality is.
+
+### Main Function
+
+The flow of the code is as follows:
+
+1. Initialization (main.c):
+        Hardware and system initialization.
+        Setup GPIO and system clock.
+        Initialize debounce and other necessary components.
+
+2. Main Loop (main.c):
+        Continuous loop:
+            Update debounce state machine.
+            Add a small delay for proper debounce operation.
+
+3. Debounce State Machine Update (API_debounce.c):
+        Check button state transitions.
+        Update debounce state and handle button press/release.
+        Control LED blinking based on debounce.
+
+4. Key State Reading (API_debounce.c):
+        Read the current state of the key/button.
+
+5. Error Handling (main.c):
+        Handle initialization errors by turning on LED2 and entering an infinite loop.
+
+### Building and Execution
+
+After implementing the code, it needs to be built and uploaded to the development board.
+
+Feel free to explore each task directory for further details and specific implementations.
