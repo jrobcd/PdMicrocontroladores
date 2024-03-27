@@ -1,0 +1,15 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+// ...
+
+#include <API_delay.h>
+
+void debounceFSM_init(debounceState_t* debounceState, buttonState_t* buttonState, bool_t* buttonPressed);
+void debounceFSM_update(debounceState_t* debounceState, buttonState_t* buttonState, bool_t* buttonPressed);
+void buttonPressed();
+void buttonReleased();
+
+// ...
+
+#endif

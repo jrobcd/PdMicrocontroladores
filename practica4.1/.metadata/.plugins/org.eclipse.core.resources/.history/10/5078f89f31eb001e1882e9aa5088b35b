@@ -1,0 +1,29 @@
+#ifndef __API_DELAY_H
+#define __API_DELAY_H
+
+#define BUTTON_UP 0
+#define BUTTON_FALLING 1
+#define BUTTON_DOWN 2
+#define BUTTON_RAISING 3
+
+typedef uint8_t debounceState_t;
+
+void debounceFSM_init(void);
+void debounceFSM_update(void);
+void buttonPressed(void);
+void buttonReleased(void);
+bool_t readKey(void);
+
+#include <stdint.h>
+#include <stdbool.h>
+
+typedef uint32_t tick_t; // Definir un tipo entero
+typedef bool bool_t; //Definir un tipo booleano
+
+typedef struct{
+   tick_t startTime; //Tiempo inicial del delay
+   tick_t duration; //Duracion del delay
+   bool_t running; //Delay esta corriendo o no
+} delay_t;
+
+#endif

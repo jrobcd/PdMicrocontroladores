@@ -1,0 +1,52 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           :
+  * @brief          : Header for main.c file.
+  *                   This file contains the common defines of the application.
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2024 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+
+/* Define to prevent recursive inclusion -------------------------------------*/
+
+#ifndef __API_DEBOUNCE_H
+#define __API_DEBOUNCE_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Includes ------------------------------------------------------------------*/
+#include "API_delay.h"
+
+/* Exported types ------------------------------------------------------------*/
+typedef enum{
+BUTTON_UP,
+BUTTON_FALLING,
+BUTTON_DOWN,
+BUTTON_RAISING,
+} debounceState_t;
+
+/* Exported constants --------------------------------------------------------*/
+/* Exported macro ------------------------------------------------------------*/
+/* Exported functions ------------------------------------------------------- */
+void debounceFSM_init(void);
+void debounceFSM_update(void);
+bool_t readKey(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __API_DEBOUNCE_H */

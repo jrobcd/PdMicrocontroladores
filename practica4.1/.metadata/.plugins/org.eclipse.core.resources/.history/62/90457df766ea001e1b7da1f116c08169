@@ -1,0 +1,34 @@
+#ifndef API_DEBOUNCE_H
+#define API_DEBOUNCE_H
+
+// ...
+
+typedef enum {
+  BUTTON_UP,
+  BUTTON_FALLING,
+  BUTTON_DOWN,
+  BUTTON_RAISING
+} debounceState_t;
+
+typedef enum {
+  RELEASED,
+  PRESSED
+} buttonState_t;
+
+#ifndef BOOL_H
+#define BOOL_H
+
+typedef enum {
+  false,
+  true
+} bool_t;
+
+#endif
+
+void debounceFSM_init(debounceState_t* debounceState, buttonState_t* buttonState, bool_t* buttonPressed);
+void debounceFSM_update(debounceState_t* debounceState, buttonState_t* buttonState, bool_t* buttonPressed);
+bool_t readKey(bool_t* buttonPressed);
+
+// ...
+
+#endif

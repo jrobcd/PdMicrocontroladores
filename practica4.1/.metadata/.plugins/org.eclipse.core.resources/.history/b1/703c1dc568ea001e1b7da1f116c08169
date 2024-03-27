@@ -1,0 +1,49 @@
+#include "API_debounce.h"
+#include "API_delay.h"
+
+static debounceState_t debounceState;
+static bool_t keyPressed;
+
+void debounceFSM_init() {
+	debounceState = BUTTON_UP;
+	keyPressed = false;
+}
+
+void debounceFSM_update() {
+	switch (debounceState) {
+		case BUTTON_UP:
+			if (BSP_PB_GetState(BUTTON_USER)) {
+				debounceState = BUTTON_FALLING;
+				delay_ms(40);
+			}
+			break;
+		case BUTTON_FALLING:
+			if (BSP_PB_GetState(BUTTON_USER)) {
+				debounceState = BUTTON_DOWN;
+				buttonPressed();
+			} else {
+				debounceState = BUTTON_UP;
+			}
+			break;
+		case BUTTON_DOWN:
+			if (!BSP_PB_GetState(BUTTON_USER)) {
+				debounceState = BUTTON_RAISING;
+				delay_ms(40);
+			}
+			break;
+		case BUTTON_RAISING:
+			if (!BSP_PB_GetState(BUTTON_USER)) {
+				debounceState = BUTTON_UP;
+				buttonReleased();
+			} else {
+				debounceState = BUTTON_DOWN;
+			}
+			break;
+	}
+}
+
+bool_t readKey() {
+	bool_t keyState = keyPressed;
+	keyPressed = false;
+	return keyState;
+}

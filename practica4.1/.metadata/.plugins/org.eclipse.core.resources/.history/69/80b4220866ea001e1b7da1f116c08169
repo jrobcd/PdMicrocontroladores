@@ -1,0 +1,108 @@
+#include <API_delay.h>
+#include "main.h"
+
+// ...
+
+int main(void)
+{
+  // ...
+
+  debounceState_t debounceState = BUTTON_UP;
+  bool_t buttonPressed = false;
+
+  debounceFSM_init(&debounceState, &buttonPressed);
+
+  // ...
+
+  while (1)
+  {
+    debounceFSM_update(&debounceState, &buttonPressed);
+
+    // ...
+  }
+}
+
+// ...
+
+void debounceFSM_init(debounceState_t* debounceState, bool_t* buttonPressed)
+{
+  *debounceState = BUTTON_UP;
+  *buttonPressed = false;
+
+  // ...
+}
+
+void debounceFSM_update(debounceState_t* debounceState, bool_t* buttonPressed)
+{
+  debounceState_t buttonState = BSP_PB_GetState(BUTTON_USER);
+
+  // ...
+
+  switch (*debounceState)
+  {
+    case BUTTON_UP:
+      if (buttonState == PRESSED)
+      {
+        *debounceState = BUTTON_FALLING;
+        delay_ms(40);
+      }
+      break;
+
+    case BUTTON_FALLING:
+      if (buttonState == RELEASED)
+      {
+        *debounceState = BUTTON_UP;
+      }
+      else if (buttonState == PRESSED)
+      {
+        *debounceState = BUTTON_DOWN;
+      }
+      break;
+
+    case BUTTON_DOWN:
+      if (buttonState == RELEASED)
+      {
+        *debounceState = BUTTON_RAISING;
+        delay_ms(40);
+      }
+      break;
+
+    case BUTTON_RAISING:
+      if (buttonState == PRESSED)
+      {
+        *debounceState = BUTTON_DOWN;
+      }
+      else if (buttonState == RELEASED)
+      {
+        *debounceState = BUTTON_UP;
+        *buttonPressed = true;
+      }
+      break;
+  }
+
+  // ...
+
+  if (*buttonPressed)
+  {
+    *buttonPressed = false;
+    buttonPressed();
+  }
+  else
+  {
+    buttonReleased();
+  }
+}
+
+void buttonPressed()
+{
+  // Encender el LED
+  BSP_LED_On(LED1);
+}
+
+void buttonReleased()
+{
+  // Apagar el LED
+  BSP_LED_Off(LED1);
+}
+
+// ...

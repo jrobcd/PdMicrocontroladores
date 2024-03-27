@@ -1,0 +1,12 @@
+#ifndef API_DEBOUNCE_H
+#define API_DEBOUNCE_H
+
+// ...
+
+void debounceFSM_init();
+void debounceFSM_update();
+bool_t readKey();
+
+// ...
+
+#endif

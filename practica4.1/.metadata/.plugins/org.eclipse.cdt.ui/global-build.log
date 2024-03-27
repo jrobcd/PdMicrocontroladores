@@ -1,0 +1,25 @@
+18:55:53 **** Incremental Build of configuration Debug for project practica4 ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/home/jroberto/Documents/PdMicrocontroladores1/practica4/practica4/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/jroberto/Documents/PdMicrocontroladores1/practica4/practica4/Drivers/CMSIS/Include" -I"/home/jroberto/Documents/PdMicrocontroladores1/practica4/practica4/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/jroberto/Documents/PdMicrocontroladores1/practica4/practica4/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/jroberto/Documents/PdMicrocontroladores1/practica4/practica4/Drivers/Core/Inc" -I"/home/jroberto/Documents/PdMicrocontroladores1/practica4/practica4/Drivers/API/INC" -I"/home/jroberto/Documents/PdMicrocontroladores1/practica4/practica4/Drivers/API/SRC" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=soft -mthumb -o "Src/main.o"
+../Src/main.c: In function 'main':
+../Src/main.c:34:11: warning: implicit declaration of function 'debounceFSM_update' [-Wimplicit-function-declaration]
+   34 |           debounceFSM_update();
+      |           ^~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "practica4.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/jroberto/Documents/PdMicrocontroladores1/practica4/practica4/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="practica4.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: practica4.elf
+ 
+arm-none-eabi-size  practica4.elf 
+arm-none-eabi-objdump -h -S practica4.elf  > "practica4.list"
+   text	   data	    bss	    dec	    hex	filename
+   6988	     36	   1604	   8628	   21b4	practica4.elf
+Finished building: default.size.stdout
+ 
+Finished building: practica4.list
+ 
+18:55:58 **** Incremental Build of configuration Debug for project practica4 ****
+make -j8 all 
+arm-none-eabi-size  practica4.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6988	     36	   1604	   8628	   21b4	practica4.elf
+Finished building: default.size.stdout
+ 

@@ -1,0 +1,28 @@
+#include "API_delay.h"
+
+void buttonPressed() {
+	BSP_LED_On(LED1);
+}
+
+void buttonReleased() {
+	BSP_LED_Off(LED1);
+}
+
+int main(void) {
+	HAL_Init();
+	SystemClock_Config();
+	BSP_LED_Init(LED1);
+	BSP_PB_Init(BUTTON_USER, BUTTON_MODE_GPIO);
+	debounceFSM_init();
+
+	while (1) {
+		debounceFSM_update();
+		if (readKey()) {
+			if (BSP_LED_GetState(LED1)) {
+				delay_ms(500);
+			} else {
+				delay_ms(100);
+			}
+		}
+	}
+}

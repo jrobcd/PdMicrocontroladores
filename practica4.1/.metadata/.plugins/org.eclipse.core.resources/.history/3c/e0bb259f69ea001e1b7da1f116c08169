@@ -1,0 +1,30 @@
+#include "API_delay.h"
+
+// Declaraciones de las variables globales privadas
+typedef enum {
+    BUTTON_UP,
+    BUTTON_FALLING,
+    BUTTON_DOWN,
+    BUTTON_RAISING,
+} debounceState_t;
+
+static debounceState_t debounceState;
+static bool_t keyPressed;
+
+// Implementaciones de las funciones p�blicas
+void debounceFSM_init() {
+    debounceState = BUTTON_UP;
+    keyPressed = false;
+}
+
+void debounceFSM_update() {
+    // Implementar la lógica de la MEF anti-rebote
+}
+
+bool_t readKey() {
+    if (keyPressed) {
+        keyPressed = false;
+        return true;
+    }
+    return false;
+}

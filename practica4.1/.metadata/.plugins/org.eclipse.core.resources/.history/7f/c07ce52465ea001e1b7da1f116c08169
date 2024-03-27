@@ -1,0 +1,13 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+// ...
+
+void debounceFSM_init();
+void debounceFSM_update();
+void buttonPressed();
+void buttonReleased();
+
+// ...
+
+#endif

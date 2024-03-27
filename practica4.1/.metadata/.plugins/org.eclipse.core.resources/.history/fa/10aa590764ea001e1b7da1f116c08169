@@ -1,0 +1,84 @@
+#include "API_debounce.h"
+
+/* Private variables ---------------------------------------------------------*/
+static debounceState_t debounceState;
+static bool_t buttonPressed;
+static delay_t delay_a;
+
+/* Private function prototypes -----------------------------------------------*/
+static void delayInit(void);
+static bool_t delayRead(void);
+static void delayWrite(tick_t duration);
+
+/* Public functions ----------------------------------------------------------*/
+void debounceFSM_init(void) {
+    debounceState = BUTTON_UP;
+    delayInit();
+}
+
+void debounceFSM_update(void) {
+    switch(debounceState) {
+        case BUTTON_UP:
+            if(HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin) == GPIO_PIN_SET) {
+                debounceState = BUTTON_FALLING;
+                delayWrite(40);
+            }
+            break;
+        case BUTTON_FALLING:
+            if(delayRead()) {
+                debounceState = BUTTON_DOWN;
+                buttonPressed = true;
+            } else {
+                debounceState = BUTTON_UP;
+            }
+            break;
+        case BUTTON_DOWN:
+            if(HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin) == GPIO_PIN_RESET) {
+                debounceState = BUTTON_RAISING;
+                delayWrite(40);
+            }
+            break;
+        case BUTTON_RAISING:
+            if(delayRead()) {
+                debounceState = BUTTON_UP;
+                buttonPressed = false;
+            } else {
+                debounceState = BUTTON_DOWN;
+            }
+            break;
+        default:
+            debounceState = BUTTON_UP;
+            break;
+    }
+}
+
+bool_t readKey(void) {
+    bool_t keyPressed = buttonPressed;
+    buttonPressed = false;
+    return keyPressed;
+}
+
+/* Private functions ---------------------------------------------------------*/
+static void delayInit(void) {
+    delay_a.startTime = 0;
+    delay_a.running = false;
+}
+
+static bool_t delayRead(void) {
+    if(!delay_a.running) {
+        delay_a.startTime = HAL_GetTick();
+        delay_a.running = true;
+    } else {
+        if(HAL_GetTick() - delay_a.startTime >= 40) {
+            delay_a.running = false;
+            return true;
+        }
+    }
+    return false;
+}
+
+static void delayWrite(tick_t duration) {
+    delay_a.duration = duration;
+}
+
+#endif
