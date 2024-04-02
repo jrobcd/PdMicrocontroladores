@@ -182,3 +182,37 @@ The flow of the code is as follows:
 After implementing the code, it needs to be built and uploaded to the development board.
 
 Feel free to explore each task directory for further details and specific implementations.
+
+## "practica5"
+
+### File Structure
+
+The project consists of six main files:
+ 
+- Inc/main.h: Includes <API_delay.h>
+
+- Src/main.c: The actual implementation of the delay structure and functions is provided here.
+
+- Drivers/API/INC/API_delay.h: Declarations and prototypes for a delay structure and its associated functions are added in this file.
+
+- Drivers/API/SRC/API_delay.c: Where functions and flow of the functionality is.
+
+- Drivers/API/INC/API_debounce.h: Declarations and prototypes for a debounce structure and its associated functions are added in this file.
+
+- Drivers/API/SRC/API_debounce.c: Where functions and flow of the functionality is.
+
+- Drivers/API/SRC/API_uart.h: Declarations for uart use.
+
+- Drivers/API/SRC/API_uart.c: Uart usage and functions.
+
+### Main Function
+
+The flow of the code is as follows:
+
+Same as "practica4.2" but using UART and showing the status of the button in the terminal.
+
+### Building and Execution
+
+After implementing the code, it needs to be built and uploaded to the development board.
+
+Feel free to explore each task directory for further details and specific implementations.
